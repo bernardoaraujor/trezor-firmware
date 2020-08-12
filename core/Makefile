@@ -271,8 +271,10 @@ upload_prodtest: ## upload prodtest using trezorctl
 	trezorctl firmware_update -f $(PRODTEST_BUILD_DIR)/prodtest.bin
 
 coverage:  # generate coverage report
-	coverage run --source=./src /dev/null 2>/dev/null && \
+	coverage run --source=./src && \
 	mv .coverage .coverage.empty && \
+	pwd && \
+	echo .coverage.* && \
 	coverage combine .coverage.* && \
 	coverage html
 	grep pc_cov htmlcov/index.html
